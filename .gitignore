@@ -1,0 +1,47 @@
+# PHP / Composer
+/vendor/
+composer.lock
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# Logs
+/storage/logs/*
+!storage/logs/.gitkeep
+
+# Uploads
+/storage/uploads/*
+!storage/uploads/.gitkeep
+
+# Cache / Temp
+*.cache
+*.tmp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDEs
+.vscode/
+.idea/
+
+# Node (caso use assets futuramente)
+/node_modules/
+/public/assets/node_modules/
+
+# Build assets
+/public/assets/dist/
+/public/assets/build/
+
+# Docker overrides locais
+docker-compose.override.yml
+
+# Testes
+/phpunit.result.cache
+
+# Misc
+*.log
+*.sql
+*.sqlite
