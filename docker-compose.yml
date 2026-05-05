@@ -3,7 +3,7 @@ services:
     build:
       context: .
       dockerfile: docker/php/Dockerfile
-    container_name: ledgerly_app
+    container_name: cashfy_app
     restart: unless-stopped
     working_dir: /var/www
     volumes:
@@ -14,11 +14,11 @@ services:
       - ./storage:/var/www/storage
       - ./.env:/var/www/.env
     networks:
-      - ledgerly_net
+      - cashfy_net
 
   nginx:
     image: nginx:stable-alpine
-    container_name: ledgerly_nginx
+    container_name: cashfy_nginx
     restart: unless-stopped
     ports:
       - "8000:80"
@@ -28,27 +28,27 @@ services:
     depends_on:
       - app
     networks:
-      - ledgerly_net
+      - cashfy_net
 
   db:
     image: mysql:8.0
-    container_name: ledgerly_db
+    container_name: cashfy_db
     restart: unless-stopped
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: ledgerly
-      MYSQL_USER: ledgerly
+      MYSQL_DATABASE: cashfy
+      MYSQL_USER: cashfy
       MYSQL_PASSWORD: secret
     volumes:
       - db_data:/var/lib/mysql
     ports:
       - "3306:3306"
     networks:
-      - ledgerly_net
+      - cashfy_net
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
-    container_name: ledgerly_pma
+    container_name: cashfy_pma
     restart: unless-stopped
     ports:
       - "8080:80"
@@ -58,10 +58,10 @@ services:
     depends_on:
       - db
     networks:
-      - ledgerly_net
+      - cashfy_net
 
 volumes:
   db_data:
 
 networks:
-  ledgerly_net:
+  cashfy_net:
